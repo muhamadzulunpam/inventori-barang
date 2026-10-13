@@ -1,69 +1,197 @@
-# CodeIgniter 4 Application Starter
+# 📦 Sistem Informasi Inventori Barang
 
-## What is CodeIgniter?
+Aplikasi web manajemen inventori untuk mencatat data barang, transaksi barang masuk dan keluar, memantau stok, serta menghasilkan laporan. Dilengkapi hak akses berdasarkan peran pengguna.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+Dibangun dengan **CodeIgniter 4**, **Bootstrap 5**, dan **Chart.js**.
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+---
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## 📸 Preview Aplikasi
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+### Dashboard
+<p align="center">
+  <img src="docs/screenshots/dashboard.png" alt="Dashboard inventori" width="800">
+</p>
 
-## Installation & updates
+### Data Barang
+<p align="center">
+  <img src="docs/screenshots/barang.png" alt="Halaman data barang" width="800">
+</p>
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+### Laporan
+<p align="center">
+  <img src="docs/screenshots/laporan.png" alt="Halaman laporan" width="800">
+</p>
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+---
 
-## Setup
+## ✨ Fitur Utama
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+- **Dashboard**: ringkasan total barang, total jenis barang, serta barang masuk dan keluar bulan berjalan.
+- **Peringatan stok**: notifikasi untuk stok menipis (≤ 10) dan stok habis.
+- **Grafik 7 hari terakhir**: tren barang masuk dan barang keluar.
+- **Top 5 stok**: barang dengan stok terbanyak dan tersedikit.
+- **Transaksi terbaru**: daftar transaksi masuk dan keluar terakhir.
+- **Data Master**: pengelolaan barang, supplier, satuan, dan jenis barang.
+- **Transaksi**: pencatatan barang masuk dan barang keluar.
+- **Laporan**: laporan stok, laporan barang masuk, dan laporan barang keluar.
+- **Manajemen User**: pengelolaan akun pengguna.
+- **Hak akses berdasarkan peran**: tampilan menu menyesuaikan level pengguna.
+- **Tampilan responsif**: sidebar menyesuaikan ukuran layar.
 
-## Important Change with index.php
+---
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+## 👥 Peran Pengguna
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+| Menu | Admin | Staff Gudang | Owner |
+|---|:---:|:---:|:---:|
+| Dashboard | ✅ | ✅ | ✅ |
+| Data Master | ✅ | ❌ | ❌ |
+| Barang Masuk | ✅ | ❌ | ❌ |
+| Barang Keluar | ✅ | ✅ | ❌ |
+| Laporan Stok dan Laporan Masuk | ✅ | ❌ | ✅ |
+| Laporan Keluar | ✅ | ✅ | ✅ |
+| Manajemen User | ✅ | ❌ | ❌ |
 
-**Please** read the user guide for a better explanation of how CI4 works!
+---
 
-## Repository Management
+## 🛠️ Teknologi
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+| Teknologi | Kegunaan |
+|---|---|
+| PHP 8.2+ | Bahasa pemrograman backend |
+| CodeIgniter 4 | Framework aplikasi web |
+| MySQL | Basis data |
+| Bootstrap 5 | Tata letak dan komponen UI |
+| Font Awesome | Ikon |
+| Chart.js | Grafik di dashboard |
+| Composer | Manajemen dependensi PHP |
+| Git | Version control |
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+---
 
-## Server Requirements
+## 🚀 Instalasi dan Menjalankan Proyek
 
-PHP version 8.2 or higher is required, with the following extensions installed:
+### Prasyarat
+- PHP 8.2 atau lebih baru (aktifkan ekstensi `intl`, `mbstring`, `mysqlnd`, dan `curl`)
+- Composer
+- MySQL atau MariaDB
+- Koneksi internet (Bootstrap, Font Awesome, dan Chart.js dimuat lewat CDN)
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+### 1. Clone repository
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
+```bash
+git clone <URL_REPOSITORY>
+cd <NAMA_FOLDER_PROYEK>
+```
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+### 2. Instal dependensi
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+```bash
+composer install
+```
+
+### 3. Siapkan environment
+
+CodeIgniter 4 menyediakan file contoh bernama `env`. Salin menjadi `.env`:
+
+```bash
+cp env .env
+```
+
+Pada Windows, salin file `env` secara manual lalu ganti namanya menjadi `.env`.
+
+### 4. Konfigurasi `.env`
+
+Atur URL aplikasi dan database:
+
+```dotenv
+CI_ENVIRONMENT = development
+
+app.baseURL = 'http://localhost:8080/'
+
+database.default.hostname = localhost
+database.default.database = nama_database
+database.default.username = root
+database.default.password =
+database.default.DBDriver = MySQLi
+```
+
+Buat database kosong dengan nama yang sama di MySQL.
+
+### 5. Siapkan tabel database
+
+Pilih salah satu sesuai yang tersedia di proyek:
+
+```bash
+php spark migrate
+```
+
+atau impor file SQL (misalnya dari folder `database/`) melalui phpMyAdmin.
+
+Jika proyek menyediakan seeder untuk akun awal:
+
+```bash
+php spark db:seed NamaSeeder
+```
+
+### 6. Jalankan aplikasi
+
+```bash
+php spark serve
+```
+
+Buka `http://localhost:8080` di browser.
+
+---
+
+## 📂 Struktur Proyek
+
+```text
+├── app/
+│   ├── Config/
+│   ├── Controllers/
+│   ├── Models/
+│   └── Views/
+│       └── layout/
+│           ├── sidebar.php
+│           └── footer.php
+├── public/
+│   └── assets/
+│       └── images/
+│           └── logo.png
+├── docs/
+│   └── screenshots/
+├── writable/
+├── env
+├── composer.json
+└── README.md
+```
+
+---
+
+## 🔒 Keamanan
+
+- Jangan mengunggah file `.env` ke repository publik.
+- Jangan menyimpan password database atau kunci rahasia di dokumentasi.
+- Batasi akses halaman berdasarkan peran di sisi server (filter pada route), bukan hanya dengan menyembunyikan menu.
+- Gunakan `esc()` pada data yang ditampilkan di view untuk mencegah XSS.
+- Ganti password akun awal setelah instalasi.
+
+---
+
+## 🗺️ Rencana Pengembangan
+
+- Filter akses per peran pada route.
+- Ekspor laporan ke PDF dan Excel.
+- Pencarian dan paginasi pada tabel data.
+- Pengujian otomatis untuk fitur penting.
+- Deployment agar aplikasi dapat diakses online.
+
+---
+
+## 👨‍💻 Developer
+
+**Muhamad Zul Sa'ban**
+
+- GitHub: [@muhamadzulsaban](https://github.com/muhamadzulsaban)
